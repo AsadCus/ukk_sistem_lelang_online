@@ -13,6 +13,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "@moesaid/cleopatra": "^1.1.1"
+        "@moesaid/cleopatra": "^1.1.1",
+        "tailwindcss-animatecss": "^3.0.2"
     }
 }

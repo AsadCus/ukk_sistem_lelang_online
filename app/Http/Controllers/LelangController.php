@@ -14,7 +14,10 @@ class LelangController extends Controller
 
     public function index()
     {
-        return $this->lelangService->get();
+        $lelang = $this->lelangService->handleGetAllLelang();
+        return view('master.lelang.index', [
+            'lelang' => $lelang,
+        ]);
     }
 
     public function getAllLelangApi()

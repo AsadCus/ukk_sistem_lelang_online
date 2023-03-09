@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LelangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,24 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('/lelang', [LelangController::class, 'index'])->name('lelang.get.index');
+    Route::get('/barang', [BarangController::class, 'index'])->name('barang.get.index');
 });
 
-Route::get('/', [DashboardController    ::class, 'index'])->name('main');
+Route::get('/', [DashboardController::class, 'home'])->name('home');
 
-Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
-    // student
-    Route::get('/student', [StudentController::class, 'profile'])->name('student')->middleware('auth', 'Student');
-    Route::get('/student/edit/{id}', [StudentController::class, 'profileEdit'])->name('student.edit')->middleware('auth', 'Student');
-    Route::put('/student/update/{id}', [StudentController::class, 'profileUpdate'])->name('student.update')->middleware('auth', 'Student');
-    Route::post('/student/clockin', [StudentController::class, 'clockin'])->name('student.put.clockin')->middleware('auth', 'Student');
-    Route::put('/student/clockout/{id}', [StudentController::class, 'clockout'])->name('student.put.clockout')->middleware('auth', 'Student');
-    Route::post('/student/cv/{id}', [StudentController::class, 'updateCV'])->name('student.put.cv')->middleware('auth', 'Student');
-    Route::put('/student/cv/{id}/del', [StudentController::class, 'deleteCV'])->name('student.del.cv')->middleware('auth', 'Student');
 
-    // supervisor
-    Route::get('/supervisor', [SupervisorController::class, 'profile'])->name('supervisor')->middleware('auth', 'Supervisor');
-    Route::put('/supervisor/attendance/approve/{id}', [AttendanceController::class, 'approveattendance'])->name('supervisor.approve.attendance.student')->middleware('auth', 'Supervisor');
-    Route::put('/supervisor/attendance/reject/{id}', [AttendanceController::class, 'rejectattendance'])->name('supervisor.reject.attendance.student')->middleware('auth', 'Supervisor');
-});
