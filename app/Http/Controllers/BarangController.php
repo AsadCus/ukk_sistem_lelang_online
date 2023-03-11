@@ -20,6 +20,17 @@ class BarangController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return view('master.barang.create');
+    }
+
+    public function store(Request $request)
+    {
+        $this->barangService->handleStoreBarang($request);
+        return redirect()->route('master.barang.index');
+    }
+
     public function getAllBarangApi()
     {
         return response()->JSON($this->barangService->handleGetAllLelang(), 200);

@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('barang_id');
             $table->foreign('barang_id')->references('id')->on('barangs');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('petugas_id');
+            $table->unsignedBigInteger('petugas_id')->nullable();
             $table->foreign('petugas_id')->references('id')->on('petugas');
             $table->integer('final_price');
-            $table->enum('status', ['active', 'inactive']);
+            $table->enum('status', ['active', 'inactive', 'close']);
             $table->timestamps();
         });
     }

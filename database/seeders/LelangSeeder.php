@@ -20,14 +20,14 @@ class LelangSeeder extends Seeder
                 'user_id' => 3,
                 'petugas_id' => 1,
                 'final_price' => 2000000,
-                'status' => 'active',
+                'status' => 'close',
             ],
             [
                 'barang_id' => 2,
                 'user_id' => 1,
                 'petugas_id' => 1,
                 'final_price' => 27000000,
-                'status' => 'active',
+                'status' => 'inactive',
             ],
             [
                 'barang_id' => 3,

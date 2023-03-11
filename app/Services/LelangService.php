@@ -20,4 +20,16 @@ class LelangService
         $data = $this->lelang->all();
         return $data;
     }
+
+    public function handleGetHistoryLelang($id)
+    {
+        $data = $this->historyLelang->where('lelang_id', $id)->orderBy('id', 'desc')->get();
+        return $data;
+    }
+
+    public function handleGetLelang($id)
+    {
+        $data = $this->lelang->find($id);
+        return $data;
+    }
 }

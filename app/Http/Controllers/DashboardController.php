@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Services\BarangService;
 use App\Services\LelangService;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -19,16 +20,6 @@ class DashboardController extends Controller
         $lelang = $this->lelangService->handleGetAllLelang();
         $barang = $this->barangService->handleGetAllBarang();
         return view('master.dashboard', [
-            'lelang' => $lelang,
-            'barang' => $barang,
-        ]);
-    }
-
-    public function home()
-    {
-        $lelang = $this->lelangService->handleGetAllLelang();
-        $barang = $this->barangService->handleGetAllBarang();
-        return view('user.dashboard', [
             'lelang' => $lelang,
             'barang' => $barang,
         ]);

@@ -10,4 +10,12 @@ class Lelang extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function barang() {
+        return $this->belongsTo(Barang::class);
+    }
+    
+    public function petugas() {
+        return $this->belongsTo(Petugas::class);
+    }
 }
