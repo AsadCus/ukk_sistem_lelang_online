@@ -15,13 +15,13 @@ class DashboardController extends Controller
         $this->barangService = $barangService;
     }
 
-    public function dashboard()
-    {
-        $lelang = $this->lelangService->handleGetAllLelang();
-        $barang = $this->barangService->handleGetAllBarang();
-        return view('master.dashboard', [
-            'lelang' => $lelang,
-            'barang' => $barang,
-        ]);
-    }
+    // public function dashboard()
+    // {
+    //     $lelang = $this->lelangService->handleGetAllLelang();
+    //     $barang = $this->barangService->handleGetAllBarang();
+    //     return view('master.dashboard', [
+    //         'lelang' => $lelang,
+    //         'barang' => $barang,
+    //     ]);
+    // }
 }

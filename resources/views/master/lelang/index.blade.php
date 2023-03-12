@@ -9,7 +9,6 @@
     <div class="card col-span-2 xl:col-span-1 mt-6 w-3/4">
         <div class="card-header flex justify-between items-center">
             Data Lelang
-            <a href="#" class="btn-bs-primary">Create +</a>
         </div>
         
         @if ($lelang->count() != 0)
@@ -19,18 +18,18 @@
                     <th class="px-4 py-2 border-r"></th>
                     <th class="px-4 py-2 border-r">barang</th>
                     <th class="px-4 py-2 border-r">petugas</th>
-                    <th class="px-4 py-2 border-r">highest bid</th>
-                    <th class="px-4 py-2 border-r">created_at</th>
+                    <th class="px-4 py-2 border-r">initial price</th>
+                    <th class="px-4 py-2 border-r">created at</th>
                     <th class="px-4 py-2">action</th>
                 </tr>
             </thead>
             <tbody class="text-gray-600">
                 @foreach ($lelang as $item)
                 <tr>                    
-                    <td class="border border-l-0 px-4 py-2 {{ $item->status == 'active' ? 'text-green-500' : 'text-red-500' }} text-center"><i class="fad fa-circle"></i></td>
+                    <td class="border border-l-0 px-4 py-2 {{ $item->status == 'active' ? 'text-green-500' : 'text-red-500' }} text-left"><i class="fad fa-circle"></i> {{ $item->status }}</td>
                     <td class="border border-l-0 px-4 py-2">{{ $item->barang->name }}</td>
-                    <td class="border border-l-0 px-4 py-2">{{ $item->petugas->username }}</td>
-                    <td class="border border-l-0 px-4 py-2">Rp. {{ $item->final_price }}</td>
+                    <td class="border border-l-0 px-4 py-2">{{ $item->petugas->username ?? '-' }}</td>
+                    <td class="border border-l-0 px-4 py-2">{{ 'Rp. '.strrev(implode('.',str_split(strrev(strval($item->barang->initial_price)),3))) }}</td>
                     <td class="border border-l-0 px-4 py-2">{{ $item->created_at->format('d M Y') }}</td>
                     <td class="border border-l-0 border-r-0 px-4 py-2">
                         <a href="{{ route('detail-lelang', ['id' => $item->id]) }}">view</a>

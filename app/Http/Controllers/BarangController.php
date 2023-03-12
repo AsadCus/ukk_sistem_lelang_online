@@ -28,7 +28,27 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         $this->barangService->handleStoreBarang($request);
-        return redirect()->route('master.barang.index');
+        return redirect()->route('admin.barang.get.index');
+    }
+
+    public function edit($id)
+    {
+        $data = $this->barangService->handleGetBarang($id);
+        return view('master.barang.edit', [
+            'data' => $data,
+        ]);
+    }
+
+    public function update($id, Request $request)
+    {
+        $this->barangService->handlePutUpdateBarang($id, $request);
+        return redirect()->route('admin.barang.get.index');
+    }
+
+    public function destroy($id, Request $request)
+    {
+        $this->barangService->handleDeleteBarang($id, $request);
+        return redirect()->route('admin.barang.get.index');
     }
 
     public function getAllBarangApi()

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\LelangService;
 use Illuminate\Http\Request;
+use App\Services\LelangService;
+use Illuminate\Support\Facades\Auth;
 
 class LelangController extends Controller
 {
@@ -28,6 +29,18 @@ class LelangController extends Controller
             'lelang' => $lelang,
             'historyLelang' => $historyLelang,
         ]);
+    }
+
+    public function bid(Request $request, $id)
+    {
+        $this->lelangService->handleBidLelang($request, $id);
+        return back();
+    }
+
+    public function bukaLelang($id, $request)
+    {
+        $this->lelangService->handleBuka($id, $request);
+        return back();
     }
 
     public function getAllLelangApi()

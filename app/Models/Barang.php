@@ -10,4 +10,8 @@ class Barang extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function lelangs() {
+        return $this->hasOne(Lelang::class);
+    }
 }

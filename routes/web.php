@@ -20,10 +20,11 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-Auth::routes();
 
-Route::get('/', [HomeController::class, 'index'])->name('main')->middleware('auth');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Auth::routes();
+Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
+// Route::get('/', [HomeController::class, 'index'])->name('main')->middleware('auth');
+// Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     // Lelang
@@ -35,10 +36,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::post('/store/barang', [BarangController::class, 'store'])->name('barang.post.store');
     Route::get('/edit/barang/{id}', [BarangController::class, 'edit'])->name('barang.get.edit');
     Route::put('/update/barang/{id}', [BarangController::class, 'update'])->name('barang.put.update');
-    Route::get('/delete/barang/{id}', [BarangController::class, 'destroy'])->name('barang.delete');
+    Route::delete('/delete/barang/{id}', [BarangController::class, 'destroy'])->name('barang.delete');
 
     // Petugas
     Route::get('/petugas', [UserController::class, 'indexPetugas'])->name('petugas.get.index');
 });
 
 Route::get('/lelang/{id}', [LelangController::class, 'detailLelang'])->name('detail-lelang');
+Route::post('/bid/lelang/{id}', [LelangController::class, 'bid'])->name('bid');
+Route::put('/open/lelang/{id}', [LelangController::class, 'bukaLelang'])->name('buka-lelang');

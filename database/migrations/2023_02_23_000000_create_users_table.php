@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->unsignedBigInteger('petugas_id')->nullable();
             $table->foreign('petugas_id')->references('id')->on('petugas');
-            $table->unsignedBigInteger('masyarakat_id')->nullable();
+        $table->unsignedBigInteger('masyarakat_id')->nullable();
             $table->foreign('masyarakat_id')->references('id')->on('masyarakats');
             $table->enum('level', ['administrator', 'petugas', 'masyarakat']);
             $table->rememberToken();

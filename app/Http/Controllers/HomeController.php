@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct(LelangService $lelangService, BarangService $barangService)
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
         $this->lelangService = $lelangService;
         $this->barangService = $barangService;
     }
@@ -28,29 +28,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->level == 'administrator') {
-            $lelang = $this->lelangService->handleGetAllLelang();
-            $barang = $this->barangService->handleGetAllBarang();
-            return view('home', [
-                'lelang' => $lelang,
-                'barang' => $barang,
-            ]);
-        }
-        if (Auth::user()->level == 'petugas') {
-            $lelang = $this->lelangService->handleGetAllLelang();
-            $barang = $this->barangService->handleGetAllBarang();
-            return view('home', [
-                'lelang' => $lelang,
-                'barang' => $barang,
-            ]);
-        }
-        if (Auth::user()->level == 'masyarakat') {
-            $lelang = $this->lelangService->handleGetAllLelang();
-            $barang = $this->barangService->handleGetAllBarang();
-            return view('home', [
-                'lelang' => $lelang,
-                'barang' => $barang,
-            ]);
-        }
+        $lelang = $this->lelangService->handleGetAllLelang();
+        $barang = $this->barangService->handleGetAllBarang();
+        return view('home', [
+            'lelang' => $lelang,
+            'barang' => $barang,
+        ]);
     }
 }

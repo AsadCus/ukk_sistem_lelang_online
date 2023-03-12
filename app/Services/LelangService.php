@@ -17,7 +17,7 @@ class LelangService
     
     public function handleGetAllLelang()
     {
-        $data = $this->lelang->all();
+        $data = $this->lelang->get();
         return $data;
     }
 
@@ -31,5 +31,20 @@ class LelangService
     {
         $data = $this->lelang->find($id);
         return $data;
+    }
+
+    public function handleBidLelang($request, $id)
+    {
+        $this->historyLelang->create([
+            'lelang_id' => $id,
+            'barang_id' => $request->barang_id,
+            'user_id' => Auth::user()->id,
+            'price_quotation' => $request->price_quotation,
+        ]);
+    }
+
+    public function handleBuka($id, $request)
+    {
+        dd($id);
     }
 }

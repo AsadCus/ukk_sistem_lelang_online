@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('petugas_id')->nullable();
             $table->foreign('petugas_id')->references('id')->on('petugas');
-            $table->integer('final_price');
+            $table->integer('final_price')->nullable();
             $table->enum('status', ['active', 'inactive', 'close']);
             $table->timestamps();
         });
