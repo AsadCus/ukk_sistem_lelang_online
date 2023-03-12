@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\BarangService;
 use App\Services\LelangService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,11 +15,12 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct(LelangService $lelangService, BarangService $barangService)
+    public function __construct(LelangService $lelangService, BarangService $barangService, UserService $userService)
     {
         // $this->middleware('auth');
         $this->lelangService = $lelangService;
         $this->barangService = $barangService;
+        $this->userService = $userService;
     }
 
     /**
@@ -30,9 +32,11 @@ class HomeController extends Controller
     {
         $lelang = $this->lelangService->handleGetAllLelang();
         $barang = $this->barangService->handleGetAllBarang();
+        $user = $this->userService->handleGetAllUser();
         return view('home', [
             'lelang' => $lelang,
             'barang' => $barang,
+            'user' => $user,
         ]);
     }
 }

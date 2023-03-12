@@ -4,7 +4,7 @@
     <div class="card mt-6 w-1/4">
         <div class="card-header">Form Create User</div>
         <div class="card-body flex items-center">
-            <form class="w-full" action="{{ route('admin.barang.post.store') }}" method="post">
+            <form class="w-full" action="{{ route('admin.petugas.post.store') }}" method="post">
             @csrf
                 <input class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3 mb-2" type="text" name="name" placeholder="name" required />
                 <input class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3 mb-2" type="text" name="username" placeholder="username" required />
@@ -37,8 +37,9 @@
                 <tr>
                     <th class="px-4 py-2 border-r">name</th>
                     <th class="px-4 py-2 border-r">username</th>
+                    <th class="px-4 py-2 border-r">email</th>
                     <th class="px-4 py-2 border-r">level</th>
-                    <th class="px-4 py-2 border-r">created at</th>
+                    <th class="px-4 py-2">created at</th>
                 </tr>
             </thead>
             <tbody class="text-gray-600">
@@ -46,6 +47,7 @@
                 <tr>                    
                     <td class="border border-l-0 px-4 py-2">{{ $item->user->name }}</td>
                     <td class="border border-l-0 px-4 py-2">{{ $item->username }}</td>
+                    <td class="border border-l-0 px-4 py-2 lowercase">{{ $item->user->email }}</td>
                     <td class="border border-l-0 px-4 py-2">{{ $item->user->level }}</td>
                     <td class="border border-l-0 border-r-0 px-4 py-2">{{ $item->created_at->format('d M Y') }}</td>
                 </tr>

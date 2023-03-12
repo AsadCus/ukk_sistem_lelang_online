@@ -33,13 +33,13 @@
     <div class="card mt-6 xl:mt-1">
         <div class="card-body flex items-center">
             
-            <div class="px-3 py-2 rounded bg-yellow-600 text-white mr-3">
-                <i class="fad fa-blog"></i>
+            <div class="px-3 py-2 rounded bg-red-600 text-white mr-3">
+                <i class="fad fa-comments"></i>
             </div>
 
             <div class="flex flex-col">
-                <h1 class="font-semibold"><span class="num-2"></span> posts</h1>
-                <p class="text-xs"><span class="num-2"></span> active</p>
+                <h1 class="font-semibold"><span class="num-2"></span> comments</h1>
+                <p class="text-xs"><span class="num-2"></span> approved</p>
             </div>
 
         </div>
@@ -52,8 +52,8 @@
             </div>
 
             <div class="flex flex-col">
-                <h1 class="font-semibold"><span class="num-2"></span> comments</h1>
-                <p class="text-xs"><span class="num-2"></span> approved</p>
+                <h1 class="font-semibold"><span>{{ count($user->whereIn('level', ['administrator', 'petugas'])) }}</span> petugas</h1>
+                <p class="text-xs"><span>?</span> online</p>
             </div>
 
         </div>
@@ -66,8 +66,8 @@
             </div>
 
             <div class="flex flex-col">
-                <h1 class="font-semibold"><span class="num-2"></span> memebrs</h1>
-                <p class="text-xs"><span class="num-2"></span> online</p>
+                <h1 class="font-semibold"><span>{{ count($user->where('level', 'masyarakat')) }}</span> members</h1>
+                <p class="text-xs"><span>?</span> online</p>
             </div>
 
         </div>
@@ -82,7 +82,7 @@
                 <tr>
                     <th class="px-4 py-2 border-r"></th>
                     <th class="px-4 py-2 border-r">product</th>
-                    <th class="px-4 py-2 border-r">price</th>
+                    <th class="px-4 py-2 border-r">initial price</th>
                     <th class="px-4 py-2">date</th>
                 </tr>
             </thead>
@@ -91,7 +91,7 @@
                 <tr>                    
                     <td class="border border-l-0 px-4 py-2 text-center text-green-500"><i class="fad fa-circle"></i></td>
                     <td class="border border-l-0 px-4 py-2">{{ $item->barang->name }}</td>
-                    <td class="border border-l-0 px-4 py-2">Rp. {{ $item->barang->initial_price }}</td>
+                    <td class="border border-l-0 px-4 py-2">{{ 'Rp. '.strrev(implode('.',str_split(strrev(strval($item->barang->initial_price)),3))) }}</td>
                     <td class="border border-l-0 border-r-0 px-4 py-2">{{ $item->created_at->format('d M Y') }}</td>
                 </tr>
                 @endforeach
@@ -124,7 +124,7 @@
                 <tr>                    
                     <td class="border border-l-0 px-4 py-2 text-center text-red-500"><i class="fad fa-circle"></i></td>
                     <td class="border border-l-0 px-4 py-2">{{ $item->barang->name }}</td>
-                    <td class="border border-l-0 px-4 py-2">Rp. {{ $item->final_price }}</td>
+                    <td class="border border-l-0 px-4 py-2">{{ 'Rp. '.strrev(implode('.',str_split(strrev(strval($item->final_price)),3))) }}</td>
                     <td class="border border-l-0 border-r-0 px-4 py-2">{{ $item->created_at->format('d M Y') }}</td>
                 </tr>
                 @endforeach

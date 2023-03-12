@@ -40,6 +40,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     // Petugas
     Route::get('/petugas', [UserController::class, 'indexPetugas'])->name('petugas.get.index');
+    Route::post('/store/petugas', [UserController::class, 'registrasiViaAdmin'])->name('petugas.post.store');
 });
 
 Route::get('/lelang/{id}', [LelangController::class, 'detailLelang'])->name('detail-lelang');

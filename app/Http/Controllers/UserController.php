@@ -21,4 +21,10 @@ class UserController extends Controller
             'petugas' => $petugas,
         ]);
     }
+
+    public function registrasiViaAdmin(Request $request)
+    {
+        $this->petugasService->handlePostPetugas($request);
+        return back();
+    }
 }
